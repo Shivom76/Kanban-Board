@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Board</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div id="col1">
+            <h2>To-Do</h2>
+            <div class="box todo" id="todo">
+                <!-- <div id="task1" draggable="true" class="dragItems">Task 1</div> -->
+            </div>
+        </div>
+        <div id="col2">
+            <h2>Ongoing...</h2>
+            <div class="box ongoing" id="ongoing">
+                <!-- <div draggable="true" class="dragItems"> -->
+                    <!-- hahaha
+                    <button class="crossBtn">X</button> -->
+                <!-- </div> -->
+            </div>
+        </div>
+        <div id="col3">
+            <h2>Completed</h2>
+            <div class="box completed" id="completed">
+                
+            </div>
+        </div>
+    </div>
+    <div class="formElement">
+        <form>
+            <input type="text" placeholder="Todo Task">
+            <button>Enter</button>
+        </form>
+        <div class="clearDiv">
+            <button class="clearBtn">Clear All Todos</button>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
