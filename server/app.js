@@ -9,10 +9,10 @@ const mongoose=require('mongoose')
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://kanban-board-gray-eta.vercel.app', // Your frontend URL
+    origin: 'https://kanban-board-gray-eta.vercel.app', // ALLOW YOUR FRONTEND
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    credentials: true
-}))
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // mongoose.connect('mongodb://127.0.0.1:27017/taskboard')
 mongoose.connect(process.env.DB_URL)
@@ -21,10 +21,13 @@ mongoose.connect(process.env.DB_URL)
     console.error(err)
   });
 
-
-app.use('/api/todos/',todoRoutes)
+app.get('/', (req, res) => {
+    res.send('Server is running successfully!');
+});
+app.use('/api/todos',todoRoutes)
 const port=process.env.PORT || 9090
 app.listen(port,()=>{
     console.log(`${port} is listening`)
 })
 
+module.exports = app;
