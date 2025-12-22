@@ -21,7 +21,9 @@ mongoose.connect(process.env.DB_URL)
     console.error(err)
   });
 
-
+app.get('/', (req, res) => {
+    res.send('Server is running successfully!');
+});
 app.use('/api/todos/',todoRoutes)
 const port=process.env.PORT || 9090
 app.listen(port,()=>{
