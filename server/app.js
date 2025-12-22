@@ -24,9 +24,10 @@ mongoose.connect(process.env.DB_URL)
 app.get('/', (req, res) => {
     res.send('Server is running successfully!');
 });
-app.use('/api/todos/',todoRoutes)
+app.use('/api/todos',todoRoutes)
 const port=process.env.PORT || 9090
 app.listen(port,()=>{
     console.log(`${port} is listening`)
 })
 
+module.exports = app;
