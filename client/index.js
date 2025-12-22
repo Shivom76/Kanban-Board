@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const ongoing=document.getElementById('ongoing')
     const completed=document.getElementById('completed')
 
+    const url='https://kanban-board-a4aw.vercel.app'
+    
     const createTaskElement = (id, content) => {
         const div = document.createElement('div');
         div.classList.add('dragItems');
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
         btn.addEventListener('click', () => {
-            fetch(`http://localhost:9090/api/todos/del/${id}`, { // Use 'id' from function arg
+            fetch(`${url}/api/todos/del/${id}`, { // Use 'id' from function arg
                 method: 'DELETE'
             })
             .then(res => {
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         return div;
     };
 
-        fetch('http://localhost:9090/api/todos')
+        fetch(`${url}/api/todos`)
         .then(res=>res.json())
         .then(tasks => {
             if(Array.isArray(tasks.allTodos)){
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(draggedElement){
                 box.appendChild(draggedElement)
                 let newStatus=box.id
-                fetch(`http://localhost:9090/api/todos/update/${draggedElementId}`,
+                fetch(`${url}/api/todos/update/${draggedElementId}`,
                 {
                     method:'PATCH',
                     headers:{
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             content:text
         }
         try{
-            const response=await fetch('http://localhost:9090/api/todos',{
+            const response=await fetch(`${url}/api/todos`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -147,7 +149,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const clearBtn=document.querySelector('.clearBtn')
     clearBtn.addEventListener('click',async ()=>{
-        const response=await fetch('http://localhost:9090/api/todos/clearAll',
+        const response=await fetch(`${url}/api/todos/clearAll`,
         {
             method:'DELETE',
         })
