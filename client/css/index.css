@@ -40,6 +40,12 @@ a{
 }
 
 
+/* Body   ---------------------------------------- */
+
+body{
+    background-color: #cabca9
+}
+
 #col1{
     /* background-color: red; */
     /* height:100vh; */
@@ -60,12 +66,15 @@ a{
 
 .container{
     display:flex;
-    height:85vh
+    height:80vh
 }
 
 h2{
     text-align:center
 }
+
+
+/* form  ------------------------------------- */
 
 .formElement{
     justify-self:center;

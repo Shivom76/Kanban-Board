@@ -194,7 +194,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         logoutBtnCreate.addEventListener('click', () => {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
-            window.location.href = "/client/index.html"; // Redirect to index page 
+            // window.location.href = "/client/index.html"; // Redirect to index page 
+            window.location.href = "/"; // Redirect to vercel index page 
         });
 
         const navR_Ul=document.querySelector(".navR_Ul")
