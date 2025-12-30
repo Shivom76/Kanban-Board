@@ -28,7 +28,7 @@ form.addEventListener("submit",(e)=>{
             localStorage.setItem('username', data.body.username);
 
             // window.location.href="/client/index.html"
-            window.location.href="/"
+            window.location.href="index.html"
         }
     })
     .catch(err=>{
