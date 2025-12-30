@@ -16,8 +16,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-mongoose.connect('mongodb://127.0.0.1:27017/taskboard')
-// mongoose.connect(process.env.DB_URL)
+// mongoose.connect('mongodb://127.0.0.1:27017/taskboard')
+mongoose.connect(process.env.DB_URL)
   .then(() => console.log('Connected!'))
   .catch((err)=>{
     console.error(err)
