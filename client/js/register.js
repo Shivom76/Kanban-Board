@@ -4,6 +4,8 @@ const username=document.querySelector('#username')
 const email=document.querySelector('#email')
 const password=document.querySelector('#password')
 
+const url='https://kanban-board-a4aw.vercel.app'
+
 form.addEventListener("submit",(e)=>{
     e.preventDefault()
 
@@ -17,7 +19,7 @@ form.addEventListener("submit",(e)=>{
         password:passwordVal
     }
 
-    fetch("http://localhost:9090/api/auth/register",{
+    fetch(`${url}/api/auth/register`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

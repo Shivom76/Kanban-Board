@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const ongoing=document.getElementById('ongoing')
     const completed=document.getElementById('completed')
 
-    // const url='https://kanban-board-a4aw.vercel.app'
-    const url='http://localhost:9090'
+    const url='https://kanban-board-a4aw.vercel.app'
+    // const url='http://localhost:9090'
 
     
     const createTaskElement = (id, content) => {

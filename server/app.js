@@ -10,8 +10,8 @@ const mongoose=require('mongoose')
 
 app.use(express.json())
 app.use(cors({
-    // origin: 'https://kanban-board-gray-eta.vercel.app', // ALLOW YOUR FRONTEND
-    origin: ['http://localhost:5500', 'http://127.0.0.1:5500'], // ALLOW YOUR FRONTEND
+    origin: 'https://kanban-board-gray-eta.vercel.app', // ALLOW YOUR FRONTEND
+    // origin: ['http://localhost:5500', 'http://127.0.0.1:5500'], // ALLOW YOUR FRONTEND
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
