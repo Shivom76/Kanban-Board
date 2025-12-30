@@ -32,7 +32,8 @@ form.addEventListener("submit",(e)=>{
             localStorage.setItem('token',data.token)
             localStorage.setItem('username',data.body.username)
 
-            window.location.href = "index.html";
+            // window.location.href = "index.html";
+            window.location.href = "/";
         }
     })
     .catch(err => {
