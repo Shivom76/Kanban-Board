@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
+    const token = localStorage.getItem('token');
+
     const todoBox=document.querySelector('.todo')
     const todo=document.getElementById('todo')
     const ongoing=document.getElementById('ongoing')
     const completed=document.getElementById('completed')
 
-    const url='https://kanban-board-a4aw.vercel.app'
+    // const url='https://kanban-board-a4aw.vercel.app'
+    const url='http://localhost:9090'
+
     
     const createTaskElement = (id, content) => {
         const div = document.createElement('div');
@@ -22,7 +26,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         btn.addEventListener('click', () => {
             fetch(`${url}/api/todos/del/${id}`, { // Use 'id' from function arg
-                method: 'DELETE'
+                method: 'DELETE',
+                headers:{
+                    'Authorization': `Bearer ${token}`
+                }
             })
             .then(res => {
                 if (res.ok) {
@@ -38,7 +45,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         return div;
     };
 
-        fetch(`${url}/api/todos`)
+        fetch(`${url}/api/todos`,{
+            headers: {
+                'Authorization': `Bearer ${token}` // ADD THIS
+            }
+        })
         .then(res=>res.json())
         .then(tasks => {
             if(Array.isArray(tasks.allTodos)){
@@ -91,7 +102,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                 {
                     method:'PATCH',
                     headers:{
-                        'Content-Type':'application/json'
+                        'Content-Type':'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body:JSON.stringify({status:newStatus})
                 })
@@ -127,7 +139,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             const response=await fetch(`${url}/api/todos`,{
                 method:'POST',
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(TodoData)
             })
@@ -152,6 +165,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         const response=await fetch(`${url}/api/todos/clearAll`,
         {
             method:'DELETE',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
         })
 
         if(response.ok){
@@ -159,4 +175,29 @@ document.addEventListener('DOMContentLoaded',()=>{
             console.log('delete done')
         }
     })
+
+
+    // keep it such that if user is logged in, the logout btn is visible
+    if(token){
+        const registerBtn=document.querySelector('#registerBtn')
+        const loginBtn=document.querySelector('#loginBtn')
+        // const logoutBtn=document.querySelector('#logoutBtn')
+        
+        registerBtn.remove()
+        loginBtn.remove()
+        
+        const logoutBtnCreate=document.createElement("button")
+        logoutBtnCreate.classList.add("navList")
+        logoutBtnCreate.id="logoutBtn"
+        logoutBtnCreate.innerText = "Logout";
+
+        logoutBtnCreate.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = "/client/index.html"; // Redirect to index page 
+        });
+
+        const navR_Ul=document.querySelector(".navR_Ul")
+        navR_Ul.appendChild(logoutBtnCreate)
+    }
 })

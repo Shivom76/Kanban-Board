@@ -19,6 +19,9 @@ const todoSchema=new Schema({
         type:String,
         enum: ['todo', 'ongoing', 'completed'],
         default: 'todo' // New tasks start here
+    },
+    owner:{
+        type:String,
     }
 }
 )

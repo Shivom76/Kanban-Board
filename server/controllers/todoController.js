@@ -1,7 +1,7 @@
 const Todo=require('../models/Todo')
 
 let getTodoMain=async(req,res)=>{
-    let allTodos=await Todo.find()
+    let allTodos=await Todo.find({owner:req.userId})
     res.json({allTodos})
     console.log('mainn page')
 }
@@ -10,11 +10,13 @@ let todoController=async(req,res)=>{
     try{
         const newTodo=await Todo.create({
             // _id:req.body.id,
-            content:req.body.content
+            content:req.body.content,
+            owner:req.userId
         })
 
         console.log(newTodo)
         res.status(201).json(newTodo);
+
 
     }catch(error){
         console.log('problemm')
@@ -46,9 +48,9 @@ let singleDelete=async(req,res)=>{
 }
 
 let updateStatus=async(req,res)=>{
-    let {id}=req.params.id
+    let {id}=req.params
     let {status}=req.body
-    let updatedData=await  Todo.findOneAndUpdate(id,{status:status},{new:true})
+    let updatedData=await Todo.findByIdAndUpdate(id,{status:status},{new:true})
     console.log(updatedData)
 }
 

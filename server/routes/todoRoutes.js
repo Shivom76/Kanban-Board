@@ -1,11 +1,12 @@
 const router=require('express').Router()
 const Todo=require('../models/Todo.js')
+const {isUser, isOwner}=require("../middlewars/authMiddlewares.js")
 const {todoController,getTodoMain,deleteAllController,singleDelete,updateStatus}=require('../controllers/todoController.js')
 
-router.get('/',getTodoMain)
-router.post('/',todoController)
-router.delete('/clearAll',deleteAllController)
-router.delete('/del/:id',singleDelete)
-router.patch('/update/:id',updateStatus)
+router.get('/',isOwner,getTodoMain)
+router.post('/',isOwner,todoController)
+router.delete('/clearAll',isOwner,deleteAllController)
+router.delete('/del/:id',isOwner,singleDelete)
+router.patch('/update/:id',isOwner,updateStatus)
 
-module.exports={todoRoutes:router};
+module.exports=router;
