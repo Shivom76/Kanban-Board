@@ -26,7 +26,8 @@ const KanbanBoard = () => {
     // 2. Add Task
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!inputValue) return;
+        const currentToken = localStorage.getItem('token');
+        if (!inputValue && !currentToken) return;
 
         try {
             const response = await fetch(`${url}/api/todos`, {
@@ -38,8 +39,8 @@ const KanbanBoard = () => {
                 body: JSON.stringify({ content: inputValue })
             });
             const data = await response.json();
-            const newTask = data.allTodos || data;
-            setTasks([...tasks, newTask]);
+            const newTask = data.todo || data; 
+            setTasks(prev => [...prev, newTask]);
             setInputValue('');
         } catch (error) {
             console.error('Submission failed:', error);
