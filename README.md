@@ -32,8 +32,29 @@ Performance: Implementing Code Splitting (React.lazy) and Memoization to handle 
 
 #### API Documentations
 
-POST	   /api/auth/register	     Create a new user
-POST	   /api/auth/login	         Get JWT token
-GET	       /api/todos	            Fetch all tasks	     Authentication Required (Bearer Token)
-PATCH  	   /api/todos/update/:id	Update task status	     Authentication Required 
-DELETE  	/api/todos/del/:id	    Remove a task	     Authentication Required 
+1. Enhanced API Documentation (for README.md)
+Beyond just the table, add a "Usage" section to your README that explains the Expected Request Body and Success Responses. This helps the reviewers test your app without digging through your code.
+
+Authentication Endpoints
+POST /api/auth/register
+
+Body: { "username": "testuser", "email": "test@mail.com", "password": "password123" }
+
+POST /api/auth/login
+
+Body: { "email": "test@mail.com", "password": "password123" }
+
+Response: { "token": "JWT_STRING_HERE", "user": { ... } }
+
+Todo Endpoints (Protected)
+GET /api/todos
+
+Header: Authorization: Bearer token
+
+POST /api/todos
+
+Body: { "content": "Finish Documentation" }
+
+PATCH /api/todos/update/:id
+
+Body: { "status": "ongoing" }
