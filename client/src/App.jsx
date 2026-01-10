@@ -48,7 +48,7 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={isLoggedIn?<KanbanBoard/>:<navigate to="/login"/>}/>
+        <Route path="/" element={<KanbanBoard/>}/>
 
         <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
