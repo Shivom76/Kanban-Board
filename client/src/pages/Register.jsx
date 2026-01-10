@@ -1,12 +1,12 @@
 import {useState} from "react"
 import {useNavigate} from 'react-router-dom'
 
-const Register=(props)=>{
+const Register=({setIsLoggedIn})=>{
     // const url="http://localhost:9090"
     const url = 'https://kanban-board-a4aw.vercel.app';
 
     const [text,setText]=useState({username:"",email:"",password:""})
-    const Navigate=useNavigate()
+    const navigate=useNavigate()
 
     const textInput=(e)=>{
         const {name,value}=e.target
@@ -27,8 +27,8 @@ const Register=(props)=>{
         }).then(res=>res.json())
         .then(data=>{
             localStorage.setItem("token",data.token)
-            props.isLoggedIn(true)
-            Navigate("/")
+            setIsLoggedIn(true)
+            navigate("/")
             console.log(data)
         })
     }
