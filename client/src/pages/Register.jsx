@@ -1,7 +1,6 @@
 import {useState} from "react"
 import {useNavigate} from 'react-router-dom'
-import {ToastContainer} from "react-toastify"
-
+import {toast} from "react-toastify"
 
 const Register=({setIsLoggedIn})=>{
     // const url="http://localhost:9090"
