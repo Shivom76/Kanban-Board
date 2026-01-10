@@ -8,7 +8,7 @@ import KanbanBoard from './components/KanbanBoard';
 import Register from './pages/Register';
 import Login from './pages/Login';
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
   const handleLogout=()=>{
     localStorage.removeItem("token")
     setIsLoggedIn(false)
+    toast.success("Logged out Successfully")
     navigate("/")
     setTasks([])
     console.log("User logged Out")
