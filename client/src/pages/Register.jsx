@@ -1,10 +1,12 @@
 import {useState} from "react"
+import {useNavigate} from 'react-router-dom'
 
-const Register=({setIsLoggedIn})=>{
+const Register=(props)=>{
     // const url="http://localhost:9090"
     const url = 'https://kanban-board-a4aw.vercel.app';
 
     const [text,setText]=useState({username:"",email:"",password:""})
+    const Navigate=useNavigate()
 
     const textInput=(e)=>{
         const {name,value}=e.target
