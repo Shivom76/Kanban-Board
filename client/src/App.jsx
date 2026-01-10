@@ -22,10 +22,9 @@ function App() {
 
   const handleLogout=()=>{
     localStorage.removeItem("token")
-    setIsLoggedIn(false)
     toast.success("Logged out Successfully")
+    setIsLoggedIn(false)
     navigate("/")
-    setTasks([])
     console.log("User logged Out")
   }
 
