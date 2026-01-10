@@ -25,6 +25,7 @@ mongoose.connect(process.env.DB_URL)
 
 app.get('/', (req, res) => {
     res.send('Server is running successfully!');
+    console.log('Server is running for root page')
 });
 app.use('/api/todos',todoRoutes)
 app.use('/api/auth',authRoutes)
