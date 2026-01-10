@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const KanbanBoard = () => {
     const [tasks, setTasks] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const navigate=Navigate()
     const token = localStorage.getItem('token');
     const url = 'https://kanban-board-a4aw.vercel.app';
     
@@ -11,6 +13,12 @@ const KanbanBoard = () => {
 
     // 1. Fetch Tasks on Load
     useEffect(() => {
+        const currentToken = localStorage.getItem('token');
+        if (!currentToken){
+            navigate("/login")
+            return;
+        }
+
         fetch(`${url}/api/todos`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
@@ -26,7 +34,6 @@ const KanbanBoard = () => {
     // 2. Add Task
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const currentToken = localStorage.getItem('token');
         if (!inputValue && !currentToken) return;
 
         try {
