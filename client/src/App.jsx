@@ -24,6 +24,7 @@ function App() {
     localStorage.removeItem("token")
     setIsLoggedIn(false)
     navigate("/")
+    setTasks([])
     console.log("User logged Out")
   }
 
@@ -47,7 +48,7 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<KanbanBoard/>}/>
+        <Route path="/" element={isLoggedIn?<KanbanBoard/>:<navigate to="/login"/>}/>
 
         <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />

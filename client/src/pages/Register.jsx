@@ -27,11 +27,15 @@ const Register=({setIsLoggedIn})=>{
             body:JSON.stringify(text)
         }).then(res=>res.json())
         .then(data=>{
-            localStorage.setItem("token",data.token)
-            setIsLoggedIn(true)
-            toast.success("Welcome user! Registration successful.");
-            navigate("/")
-            console.log(data)
+            if(data.token){
+                localStorage.setItem("token",data.token)
+                setIsLoggedIn(true)
+                toast.success("Welcome user! Registration successful.");
+                navigate("/")
+                console.log(data)
+            }else{
+                toast.error('Registration Failed!')
+            }
         })
     }
 
