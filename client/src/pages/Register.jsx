@@ -1,5 +1,7 @@
 import {useState} from "react"
 import {useNavigate} from 'react-router-dom'
+import {ToastContainer} from "react-toastify"
+
 
 const Register=({setIsLoggedIn})=>{
     // const url="http://localhost:9090"
@@ -28,6 +30,7 @@ const Register=({setIsLoggedIn})=>{
         .then(data=>{
             localStorage.setItem("token",data.token)
             setIsLoggedIn(true)
+            toast.success("Welcome user! Registration successful.");
             navigate("/")
             console.log(data)
         })

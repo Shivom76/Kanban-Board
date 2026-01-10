@@ -8,6 +8,9 @@ import KanbanBoard from './components/KanbanBoard';
 import Register from './pages/Register';
 import Login from './pages/Login';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -26,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer position="top-right" autoClose={3000} />
       <nav className="sticky top-0 text-white flex justify-between p-2 mt-0 mb-5 z-20">
         <div className="navL text-2xl font-bold"><Link to="/">Kanban Board</Link></div>
         <div className="navR">

@@ -28,6 +28,7 @@ const Login=({setIsLoggedIn})=>{
         .then(data=>{
             localStorage.setItem("token",data.token)
             setIsLoggedIn(true)
+            toast.success("Welcome user! Login successful.");
             navigate("/")
             console.log(data)
         })
